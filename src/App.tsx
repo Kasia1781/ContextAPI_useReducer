@@ -1,6 +1,7 @@
 import './App.css';
 import AddTimer from './components/AddTimer';
 import Header from './components/Header';
+import Timers from './components/Timers';
 
 function App() {
 	return (
@@ -8,6 +9,7 @@ function App() {
 			<Header />
 			<main>
 				<AddTimer />
+				<Timers />
 			</main>
 		</>
 	);
