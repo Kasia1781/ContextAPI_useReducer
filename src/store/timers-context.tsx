@@ -1,4 +1,4 @@
-import { createContext, type ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 
 type TimerState = {
 	isRunning: boolean;
@@ -17,6 +17,16 @@ type TimersContextValue = TimerState & {
 };
 
 export const TimersContext = createContext<TimersContextValue | null>(null);
+
+//niestandardowy hook żeby context nie przyjmował wartości null
+export function useTimersContext() {
+	const timersCtx = useContext(TimersContext);
+
+	if (timersCtx === null) {
+		throw new Error('TimersContext is null - that should not be case!');
+	}
+	return timersCtx;
+}
 
 type TimersContextProviderProps = {
 	children: ReactNode;
