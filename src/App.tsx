@@ -10,8 +10,8 @@ function App() {
 			<Header />
 			<main>
 				<AddTimer />
-				<Timers />
 			</main>
+			<Timers />
 		</TimersContextProvider>
 	);
 }
