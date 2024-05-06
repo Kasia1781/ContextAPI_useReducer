@@ -3,7 +3,6 @@ import Timer from './Timer';
 
 export default function Timers() {
 	const { timers } = useTimersContext();
-	console.log(timers);
 
 	return (
 		<ul>
