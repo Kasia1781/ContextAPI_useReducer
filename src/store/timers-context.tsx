@@ -1,5 +1,10 @@
 import { createContext, useContext, useReducer, type ReactNode } from 'react';
 
+type Timer = {
+	name: string;
+	duration: number;
+};
+
 type TimerState = {
 	isRunning: boolean;
 	timers: Timer[];
@@ -11,18 +16,13 @@ const initialState: TimerState = {
 	timers: [],
 };
 
-type Timer = {
-	name: string;
-	duration: number;
-};
-
 type TimersContextValue = TimerState & {
 	addTimer: (timerData: Timer) => void;
 	startTimer: () => void;
 	stopTimer: () => void;
 };
 
-export const TimersContext = createContext<TimersContextValue | null>(null);
+const TimersContext = createContext<TimersContextValue | null>(null);
 
 //niestandardowy hook żeby context nie przyjmował wartości null
 export function useTimersContext() {
@@ -48,11 +48,13 @@ type StopTimersAction = {
 
 type AddTimersAction = {
 	type: 'ADD_TIMER';
+	payload: Timer;
 };
 
 type Action = {
 	type: StartTimersAction | StopTimersAction | AddTimersAction;
 };
+
 function timersReducer(state: TimerState, action: Action): TimerState {
 	if (action.type === 'START_TIMER') {
 		return {
@@ -76,9 +78,8 @@ function timersReducer(state: TimerState, action: Action): TimerState {
 				{ name: action.payload.name, duration: action.payload.duration },
 			],
 		};
-
-		return state;
 	}
+	return state;
 }
 
 export function TimersContextProvider({

@@ -39,7 +39,6 @@ export default function Timer({ name, duration }: TimerProps) {
 	}, [isRunning]);
 
 	const formattedRemainingTime = (remainingTime / 1000).toFixed(2);
-	console.log(formattedRemainingTime);
 
 	return (
 		<Container as='article'>
